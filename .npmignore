@@ -20,7 +20,6 @@ package-lock.json
 .github/
 demo/
 demo-lazyload/
-src/
 dev/
 node_modules/
 tslint.json
