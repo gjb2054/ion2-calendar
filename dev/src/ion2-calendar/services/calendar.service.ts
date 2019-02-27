@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import * as moment from 'moment';
 
 import {
@@ -12,10 +12,15 @@ import {
 import { defaults, pickModes } from '../config';
 
 const isBoolean = (input: any) => input === true || input === false;
+import { DEFAULT_CALENDAR_OPTIONS } from './calendar-options.provider';
 
 @Injectable()
 export class CalendarService {
-  constructor() {}
+  private readonly defaultOpts: CalendarModalOptions;
+
+  constructor(@Optional() @Inject(DEFAULT_CALENDAR_OPTIONS) defaultOpts: CalendarModalOptions) {
+    this.defaultOpts = defaultOpts;
+  }
 
   get DEFAULT_STEP() {
     return 12;
@@ -49,7 +54,7 @@ export class CalendarService {
       daysConfig = _daysConfig,
       disableWeeks = _disableWeeks,
       showAdjacentMonthDay = true,
-    } = calendarOptions || {};
+    } = { ...this.defaultOpts, ...calendarOptions };
 
     return {
       id,
@@ -79,7 +84,7 @@ export class CalendarService {
       defaultDate: calendarOptions.defaultDate || null,
       defaultDates: calendarOptions.defaultDates || null,
       defaultDateRange: calendarOptions.defaultDateRange || null,
-      showAdjacentMonthDay,
+      showAdjacentMonthDay
     };
   }
 

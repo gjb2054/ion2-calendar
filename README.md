@@ -61,6 +61,37 @@ import { CalendarModule } from "ion2-calendar";
 export class AppModule {}
 ```
 
+### Change Defaults
+
+```typescript
+import { NgModule } from '@angular/core';
+import { IonicApp, IonicModule } from 'ionic-angular';
+import { MyApp } from './app.component';
+...
+import { CalendarModule } from "ion2-calendar";
+
+@NgModule({
+  declarations: [
+    MyApp,
+    ...
+  ],
+  imports: [
+    IonicModule.forRoot(MyApp),
+    // See CalendarComponentOptions for options
+    CalendarModule.forRoot({
+      doneLabel: 'Save',
+      closeIcon: true
+    })
+  ],
+  bootstrap: [IonicApp],
+  entryComponents: [
+    MyApp,
+    ...
+  ]
+})
+export class AppModule {}
+```
+
 # Components Mode
 
 ### Basic
@@ -233,13 +264,13 @@ Set pickMode to 'range'.
           pickMode: 'range',
           title: 'RANGE'
         };
-    
+
         let myCalendar = this.modalCtrl.create(CalendarModal, {
           options: options
         });
-    
+
         myCalendar.present();
-    
+
         myCalendar.onDidDismiss((date: { from: CalendarResult; to: CalendarResult }, type: string) => {
           console.log(date);
         });
@@ -256,13 +287,13 @@ Set pickMode to 'multi'.
           pickMode: 'multi',
           title: 'MULTI'
         };
-    
+
         let myCalendar =  this.modalCtrl.create(CalendarModal, {
           options: options
         });
-    
+
         myCalendar.present();
-    
+
         myCalendar.onDidDismiss((date: CalendarResult[], type: string) => {
           console.log(date);
         })
