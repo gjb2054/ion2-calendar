@@ -104,11 +104,14 @@ var CalendarModal = /** @class */ (function () {
         if (!Array.isArray(this.datesTemp)) {
             return false;
         }
-        var pickMode = this._d.pickMode;
+        var _a = this._d, pickMode = _a.pickMode, defaultEndDateToStartDate = _a.defaultEndDateToStartDate;
         switch (pickMode) {
             case config_1.pickModes.SINGLE:
                 return !!(this.datesTemp[0] && this.datesTemp[0].time);
             case config_1.pickModes.RANGE:
+                if (defaultEndDateToStartDate) {
+                    return !!(this.datesTemp[0] && this.datesTemp[0].time);
+                }
                 return !!(this.datesTemp[0] && this.datesTemp[1]) && !!(this.datesTemp[0].time && this.datesTemp[1].time);
             case config_1.pickModes.MULTI:
                 return this.datesTemp.length > 0 && this.datesTemp.every(function (e) { return !!e && !!e.time; });

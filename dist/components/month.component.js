@@ -135,6 +135,14 @@ var MonthComponent = /** @class */ (function () {
                     this.selectStart.emit(item);
                 }
             }
+            else if (this._date[0].time > item.time) {
+                this._date[0] = item;
+                this.selectStart.emit(item);
+            }
+            else if (this._date[1].time < item.time) {
+                this._date[1] = item;
+                this.selectEnd.emit(item);
+            }
             else {
                 this._date[0] = item;
                 this.selectStart.emit(item);
