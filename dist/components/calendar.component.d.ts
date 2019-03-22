@@ -23,9 +23,11 @@ export declare class CalendarComponent implements ControlValueAccessor, OnInit {
     selectStart: EventEmitter<CalendarDay>;
     selectEnd: EventEmitter<CalendarDay>;
     options: CalendarComponentOptions;
+    readonly MONTH_DATE_FORMAT = "MMMM yyyy";
     constructor(calSvc: CalendarService);
     ngOnInit(): void;
     getViewDate(): CalendarComponentPayloadTypes;
+    getDate(date: number): Date;
     setViewDate(value: CalendarComponentPayloadTypes): void;
     switchView(): void;
     prev(): void;

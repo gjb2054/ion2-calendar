@@ -18,6 +18,7 @@ export declare class MonthComponent implements ControlValueAccessor, AfterViewIn
     _isInit: boolean;
     _onChanged: Function;
     _onTouched: Function;
+    readonly DAY_DATE_FORMAT = "MMMM dd, yyyy";
     readonly _isRange: boolean;
     constructor(ref: ChangeDetectorRef);
     ngAfterViewInit(): void;
@@ -27,6 +28,7 @@ export declare class MonthComponent implements ControlValueAccessor, AfterViewIn
     registerOnTouched(fn: any): void;
     trackByTime(index: number, item: CalendarOriginal): number;
     isEndSelection(day: CalendarDay): boolean;
+    getDayLabel(day: CalendarDay): Date;
     isBetween(day: CalendarDay): boolean;
     isStartSelection(day: CalendarDay): boolean;
     isSelected(time: number): boolean;
